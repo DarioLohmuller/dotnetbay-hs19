@@ -1,6 +1,8 @@
 # dotnetbay - A .NET Auction Bootstrapper 
 A bootstrap solution to build your own basic auction portal.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/hf7ug1ebms83nboj/branch/master?svg=true&retina=true)](https://ci.appveyor.com/project/DarioLohmuller/dotnetbay-hs19/branch/master)
+
 ## Goals
 This is the starting point for various extensions to the core business library. The current storage implementation is done by serializing data to json-files. There is no graphical user interface, just a command line.
 
