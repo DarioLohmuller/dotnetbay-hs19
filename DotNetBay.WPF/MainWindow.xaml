@@ -4,17 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DotNetBay.WPF"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <Button Name="NewAuction" Width="100" HorizontalAlignment="Left" Padding="5" Margin="10">
+        <Button Name="NewAuction" Width="100" HorizontalAlignment="Left" Padding="5" Margin="10" Click="NewAuction_Click">
             New Auction
         </Button>
 
         <DataGrid Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" />
+                <DataGridTextColumn Header="Image" Binding="{Binding Path=Image}" />
                 <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Start Price" Binding="{Binding Path=StartPrice}" />
+                <DataGridTextColumn Header="Current Price" Binding="{Binding Path=CurrentPrice}" />
                 <DataGridTextColumn Header="Start Date" Binding="{Binding Path=StartDateTimeUtc}" />
                 <DataGridTextColumn Header="End Date" Binding="{Binding Path=EndDateTimeUtc}" />
                 <DataGridTextColumn Header="Seller" Binding="{Binding Path=Seller}" />

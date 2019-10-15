@@ -40,5 +40,11 @@ namespace DotNetBay.WPF
 
             this.DataContext = this;
         }
+
+        private void NewAuction_Click(object sender, RoutedEventArgs e)
+        {
+            var sellView = new SellView();
+            sellView.ShowDialog(); // Blocking
+        }
     }
 }

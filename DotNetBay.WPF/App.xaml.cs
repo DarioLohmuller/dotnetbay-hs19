@@ -44,6 +44,24 @@ namespace DotNetBay.WPF
                     StartPrice = 72,
                     Seller = me
                 });
+
+                service.Save(new Auction
+                {
+                    Title = "My Second Auction",
+                    StartDateTimeUtc = DateTime.UtcNow.AddSeconds(100),
+                    EndDateTimeUtc = DateTime.UtcNow.AddDays(20),
+                    StartPrice = 44,
+                    Seller = me
+                });
+
+                service.Save(new Auction
+                {
+                    Title = "My Third Auction",
+                    StartDateTimeUtc = DateTime.UtcNow.AddSeconds(20),
+                    EndDateTimeUtc = DateTime.UtcNow.AddDays(3),
+                    StartPrice = 53.60,
+                    Seller = me
+                });
             }
         }
     }
