@@ -7,6 +7,11 @@
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <local:StatusIsClosedConverter x:Key="GetStatusKey" />
+    </Window.Resources>
+
     <StackPanel>
         <Button Name="NewAuction" Width="100" HorizontalAlignment="Left" Padding="5" Margin="10" Click="NewAuction_Click">
             New Auction
@@ -14,14 +19,33 @@
 
         <DataGrid Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" />
-                <DataGridTextColumn Header="Image" Binding="{Binding Path=Image}" />
-                <DataGridTextColumn Header="Title" Binding="{Binding Path=Title}" />
+
+                <DataGridTemplateColumn Header="Auction">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" ></TextBlock>
+                                    <Image Source="{Binding Image}" MaxHeight="100" MaxWidth="120"></Image>
+                                </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding IsClosed, Converter={StaticResource converter}}" Header="Status" />
                 <DataGridTextColumn Header="Start Price" Binding="{Binding Path=StartPrice}" />
                 <DataGridTextColumn Header="Current Price" Binding="{Binding Path=CurrentPrice}" />
                 <DataGridTextColumn Header="Start Date" Binding="{Binding Path=StartDateTimeUtc}" />
                 <DataGridTextColumn Header="End Date" Binding="{Binding Path=EndDateTimeUtc}" />
                 <DataGridTextColumn Header="Seller" Binding="{Binding Path=Seller}" />
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <ItemContainerTemplate>
+                            <Button Background="SeaGreen">Buy</Button>
+                        </ItemContainerTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 
