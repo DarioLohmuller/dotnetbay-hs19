@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace DotNetBay.WPF
 {
-    public class StatusIsClosedConverter : IValueConverter
+    public class BooleanToStatusTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

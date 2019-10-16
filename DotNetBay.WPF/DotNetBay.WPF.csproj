@@ -58,7 +58,8 @@
     <Compile Include="SellView.xaml.cs">
       <DependentUpon>SellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatusIsClosedConverter.cs" />
+    <Compile Include="Converter\BooleanToStatusTextConverter.cs" />
+    <Compile Include="Validators\PriceInputValidator.cs" />
     <Page Include="BidView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,5 +128,6 @@
       <Name>DotNetBay.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

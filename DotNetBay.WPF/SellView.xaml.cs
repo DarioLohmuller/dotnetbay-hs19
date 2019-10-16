@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Net.Mime;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using DotNetBay.Core;
+using DotNetBay.Data.Entity;
+using Microsoft.Win32;
 
 namespace DotNetBay.WPF
 {
@@ -19,9 +14,43 @@ namespace DotNetBay.WPF
     /// </summary>
     public partial class SellView : Window
     {
+
         public SellView()
         {
             InitializeComponent();
+        }
+
+        private void OpenFileDialog_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                FilePathTxtBox.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void AddAuction_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] img = File.ReadAllBytes(FilePathTxtBox.Text);
+
+            var memberService = new SimpleMemberService(App.MainRepository);
+
+            App.MainRepository.Add(new Auction
+            {
+                Title = TitleTxtBox.Text,
+                Description = DescriptionTxtBox.Text,
+                StartPrice = Double.Parse(StartPriceTxtBox.Text),
+                StartDateTimeUtc = StartDatePicker.SelectedDate.GetValueOrDefault(DateTime.Now),
+                EndDateTimeUtc = EndDatePicker.SelectedDate.GetValueOrDefault(DateTime.Now.AddDays(14)),
+                Image = img,
+                Seller = memberService.GetCurrentMember(),
+            });
+            Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
