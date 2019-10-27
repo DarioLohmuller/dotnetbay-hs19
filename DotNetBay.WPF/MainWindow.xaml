@@ -1,0 +1,42 @@
+﻿<Window x:Class="DotNetBay.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNetBay.WPF"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Button Name="NewAuction"
+                Margin="10 5 10 5"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left">New Auction</Button>
+        <DataGrid Name="AuctionsDataGrid"
+                  ItemsSource="{Binding Auctions}"
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Auction"
+                                    Binding="{Binding Path=Title}" />
+                <DataGridTextColumn Header="Start Date"
+                                    Binding="{Binding Path=StartDateTimeUtc}" />
+                <DataGridTextColumn Header="End Date"
+                                    Binding="{Binding Path=EndDateTimeUtc}" />
+                <DataGridTextColumn Header="Start Price"
+                                    Binding="{Binding Path=StartPrice}" />
+                <DataGridTextColumn Header="Seller"
+                                    Binding="{Binding Path=Seller.DisplayName}" />
+                <DataGridTemplateColumn Header="Bid">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="Bid"
+                                    Margin="5">Bid</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
